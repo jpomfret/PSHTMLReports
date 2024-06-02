@@ -1,6 +1,6 @@
 version: "3"
 services:
-    pshtml1:
+    mssql1:
       image: jpomfret7/pshtml:v0.1.0
       volumes:
         - mydata:/var/opt/backups
@@ -9,8 +9,8 @@ services:
         - ..:/workspace:cached
       ports:
         - "4433:1433"
-      container_name: pshtml1
-      hostname: pshtml1
+      container_name: mssql1
+      hostname: mssql1
 
 volumes:
   mydata:
