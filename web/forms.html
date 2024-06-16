@@ -1,0 +1,21 @@
+<html ><head ><title >Cat Fact Form</title><script type="text/javascript"  >    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.querySelector('#myForm');
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const limit = document.querySelector('input[name="fact"]').value;
+            const url = limit ? `https://catfact.ninja/facts?limit=${limit}` : 'https://catfact.ninja/facts/';
+            fetch(url)
+                .then(response => response.json())
+                .then(facts => showFacts(facts.data));
+        });
+
+        showFacts = facts => {
+            const factsDiv = document.querySelector('#catFact');
+            factsDiv.innerHTML = ''; // Clear the div
+            facts.forEach(fact => {
+                const factElement = document.createElement('p');
+                factElement.innerText = `Fact: ${fact.fact}`;
+                factsDiv.append(factElement);
+            });
+        }
+    });</script></head><Body ><h1 >Let's get a cat fact</h1><form method="post" Target="_self" Id="myForm" action="self" enctype="text/plain"  ><input Id="fact" type="text" name="fact"  /><input name="Get Cat Fact" type="submit"  /></form><div Id="catFact"  ></div></Body></html>

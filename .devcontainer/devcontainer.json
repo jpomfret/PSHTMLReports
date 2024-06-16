@@ -15,7 +15,7 @@
         "pwsh": {
             "path": "pwsh",
             "icon": "terminal-powershell"
-        }
+        }q
     },
     "terminal.integrated.defaultProfile.linux": "pwsh"
     },
@@ -26,7 +26,10 @@
         "oderwat.indent-rainbow",
         "mhutchie.git-graph",
         "usernamehw.errorlens",
-        "streetsidesoftware.code-spell-checker"
+        "streetsidesoftware.code-spell-checker",
+        "Gruntfuggly.todo-tree",
+        "GitHub.github-vscode-theme",
+        "george-alisson.html-preview-vscode"
     ],
     "shutdownAction": "stopCompose",
     "remoteUser": "root"  // not ideal - prob need to setup a non-root user and use that instead. permissions issue without this!

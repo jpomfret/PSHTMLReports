@@ -29,7 +29,7 @@ Import-Module ImportExcel
 
 # first time it runs it warns about the libraries
 $test | Export-Excel -Path .\export\test.xlsx -WarningVariable warn
-Remove-Item .\export\test.xlsx 
+Remove-Item .\export\test.xlsx
 
 $ShowError = $false
 $ShowKube = $false
