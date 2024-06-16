@@ -1,7 +1,7 @@
 version: "3"
 services:
     mssql1:
-      image: jpomfret7/pshtml:v0.1.0
+      image: jpomfret7/pshtml:v0.2.0
       volumes:
         - mydata:/var/opt/backups
         - shared:/shared
