@@ -1,43 +1,207 @@
-<html ><head ><style >table.paleBlueRows {
-  font-family: "Times New Roman", Times, serif;
-  border: 1px solid #FFFFFF;
-  width: 350px;
-  height: 200px;
-  text-align: center;
-  border-collapse: collapse;
-}
-table.paleBlueRows td, table.paleBlueRows th {
-  border: 1px solid #FFFFFF;
-  padding: 3px 2px;
-}
-table.paleBlueRows tbody td {
-  font-size: 13px;
-}
-table.paleBlueRows tr:nth-child(even) {
-  background: #D0E4F5;
-}
-table.paleBlueRows thead {
-  background: #0B6FA4;
-  border-bottom: 5px solid #FFFFFF;
-}
-table.paleBlueRows thead th {
-  font-size: 17px;
-  font-weight: bold;
-  color: #FFFFFF;
-  text-align: center;
-  border-left: 2px solid #FFFFFF;
-}
-table.paleBlueRows thead th:first-child {
-  border-left: none;
-}
+<html>
 
-table.paleBlueRows tfoot {
-  font-size: 14px;
-  font-weight: bold;
-  color: #333333;
-  background: #D0E4F5;
-  border-top: 3px solid #444444;
-}
-table.paleBlueRows tfoot td {
-  font-size: 14px;
-}</style></head><Body ><h1 >Beautiful Table Report: 2024-06-15</h1></Body><h2 >Data from CoPilot's PSObject</h2><Table Class="paleBlueRows"  ><thead ><tr ><th >Age</th><th >Location</th><th >Name</th></tr></thead><tbody ><tr ><td >30</td><td >UK</td><td >Jess</td></tr><tr ><td >31</td><td >UK</td><td >Rob</td></tr><tr ><td >29</td><td >UK</td><td >Chrissy</td></tr></tbody></Table><h2 >Data from SQL Server</h2><Table Class="paleBlueRows"  ><thead ><tr ><th >address</th><th >au_fname</th><th >au_id</th><th >au_lname</th><th >city</th><th >phone</th><th >state</th><th >zip</th></tr></thead><tbody ><tr ><td >10932 Bigge Rd.</td><td >Johnson</td><td >172-32-1176</td><td >White</td><td >Menlo Park</td><td >408 496-7223</td><td >CA</td><td >94025</td></tr><tr ><td >309 63rd St. #411</td><td >Marjorie</td><td >213-46-8915</td><td >Green</td><td >Oakland</td><td >415 986-7020</td><td >CA</td><td >94618</td></tr><tr ><td >589 Darwin Ln.</td><td >Cheryl</td><td >238-95-7766</td><td >Carson</td><td >Berkeley</td><td >415 548-7723</td><td >CA</td><td >94705</td></tr><tr ><td >22 Cleveland Av. #14</td><td >Michael</td><td >267-41-2394</td><td >O'Leary</td><td >San Jose</td><td >408 286-2428</td><td >CA</td><td >95128</td></tr><tr ><td >5420 College Av.</td><td >Dean</td><td >274-80-9391</td><td >Straight</td><td >Oakland</td><td >415 834-2919</td><td >CA</td><td >94609</td></tr><tr ><td >10 Mississippi Dr.</td><td >Meander</td><td >341-22-1782</td><td >Smith</td><td >Lawrence</td><td >913 843-0462</td><td >KS</td><td >66044</td></tr><tr ><td >6223 Bateman St.</td><td >Abraham</td><td >409-56-7008</td><td >Bennet</td><td >Berkeley</td><td >415 658-9932</td><td >CA</td><td >94705</td></tr><tr ><td >3410 Blonde St.</td><td >Ann</td><td >427-17-2319</td><td >Dull</td><td >Palo Alto</td><td >415 836-7128</td><td >CA</td><td >94301</td></tr><tr ><td >PO Box 792</td><td >Burt</td><td >472-27-2349</td><td >Gringlesby</td><td >Covelo</td><td >707 938-6445</td><td >CA</td><td >95428</td></tr><tr ><td >18 Broadway Av.</td><td >Charlene</td><td >486-29-1786</td><td >Locksley</td><td >San Francisco</td><td >415 585-4620</td><td >CA</td><td >94130</td></tr></tbody></Table></html>
+<head>
+    <style>
+        table.paleBlueRows {
+            font-family: "Times New Roman", Times, serif;
+            border: 1px solid #FFFFFF;
+            width: 350px;
+            height: 200px;
+            text-align: center;
+            border-collapse: collapse;
+        }
+
+        table.paleBlueRows td,
+        table.paleBlueRows th {
+            border: 1px solid #FFFFFF;
+            padding: 3px 2px;
+        }
+
+        table.paleBlueRows tbody td {
+            font-size: 13px;
+        }
+
+        table.paleBlueRows tr:nth-child(even) {
+            background: #D0E4F5;
+        }
+
+        table.paleBlueRows thead {
+            background: #0B6FA4;
+            border-bottom: 5px solid #FFFFFF;
+        }
+
+        table.paleBlueRows thead th {
+            font-size: 17px;
+            font-weight: bold;
+            color: #FFFFFF;
+            text-align: center;
+            border-left: 2px solid #FFFFFF;
+        }
+
+        table.paleBlueRows thead th:first-child {
+            border-left: none;
+        }
+
+        table.paleBlueRows tfoot {
+            font-size: 14px;
+            font-weight: bold;
+            color: #333333;
+            background: #D0E4F5;
+            border-top: 3px solid #444444;
+        }
+
+        table.paleBlueRows tfoot td {
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<Body>
+    <h1>Beautiful Table Report: 2024-06-19</h1>
+</Body>
+<h2>Data from CoPilot's PSObject</h2>
+<Table Class="paleBlueRows">
+    <thead>
+        <tr>
+            <th>Age</th>
+            <th>Location</th>
+            <th>Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>30</td>
+            <td>UK</td>
+            <td>Jess</td>
+        </tr>
+        <tr>
+            <td>31</td>
+            <td>UK</td>
+            <td>Rob</td>
+        </tr>
+        <tr>
+            <td>29</td>
+            <td>UK</td>
+            <td>Chrissy</td>
+        </tr>
+    </tbody>
+</Table>
+<h2>Data from SQL Server</h2>
+<Table Class="paleBlueRows">
+    <thead>
+        <tr>
+            <th>address</th>
+            <th>au_fname</th>
+            <th>au_id</th>
+            <th>au_lname</th>
+            <th>city</th>
+            <th>phone</th>
+            <th>state</th>
+            <th>zip</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>10932 Bigge Rd.</td>
+            <td>Johnson</td>
+            <td>172-32-1176</td>
+            <td>White</td>
+            <td>Menlo Park</td>
+            <td>408 496-7223</td>
+            <td>CA</td>
+            <td>94025</td>
+        </tr>
+        <tr>
+            <td>309 63rd St. #411</td>
+            <td>Marjorie</td>
+            <td>213-46-8915</td>
+            <td>Green</td>
+            <td>Oakland</td>
+            <td>415 986-7020</td>
+            <td>CA</td>
+            <td>94618</td>
+        </tr>
+        <tr>
+            <td>589 Darwin Ln.</td>
+            <td>Cheryl</td>
+            <td>238-95-7766</td>
+            <td>Carson</td>
+            <td>Berkeley</td>
+            <td>415 548-7723</td>
+            <td>CA</td>
+            <td>94705</td>
+        </tr>
+        <tr>
+            <td>22 Cleveland Av. #14</td>
+            <td>Michael</td>
+            <td>267-41-2394</td>
+            <td>O'Leary</td>
+            <td>San Jose</td>
+            <td>408 286-2428</td>
+            <td>CA</td>
+            <td>95128</td>
+        </tr>
+        <tr>
+            <td>5420 College Av.</td>
+            <td>Dean</td>
+            <td>274-80-9391</td>
+            <td>Straight</td>
+            <td>Oakland</td>
+            <td>415 834-2919</td>
+            <td>CA</td>
+            <td>94609</td>
+        </tr>
+        <tr>
+            <td>10 Mississippi Dr.</td>
+            <td>Meander</td>
+            <td>341-22-1782</td>
+            <td>Smith</td>
+            <td>Lawrence</td>
+            <td>913 843-0462</td>
+            <td>KS</td>
+            <td>66044</td>
+        </tr>
+        <tr>
+            <td>6223 Bateman St.</td>
+            <td>Abraham</td>
+            <td>409-56-7008</td>
+            <td>Bennet</td>
+            <td>Berkeley</td>
+            <td>415 658-9932</td>
+            <td>CA</td>
+            <td>94705</td>
+        </tr>
+        <tr>
+            <td>3410 Blonde St.</td>
+            <td>Ann</td>
+            <td>427-17-2319</td>
+            <td>Dull</td>
+            <td>Palo Alto</td>
+            <td>415 836-7128</td>
+            <td>CA</td>
+            <td>94301</td>
+        </tr>
+        <tr>
+            <td>PO Box 792</td>
+            <td>Burt</td>
+            <td>472-27-2349</td>
+            <td>Gringlesby</td>
+            <td>Covelo</td>
+            <td>707 938-6445</td>
+            <td>CA</td>
+            <td>95428</td>
+        </tr>
+        <tr>
+            <td>18 Broadway Av.</td>
+            <td>Charlene</td>
+            <td>486-29-1786</td>
+            <td>Locksley</td>
+            <td>San Francisco</td>
+            <td>415 585-4620</td>
+            <td>CA</td>
+            <td>94130</td>
+        </tr>
+    </tbody>
+</Table>
+
+</html>

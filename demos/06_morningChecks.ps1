@@ -37,62 +37,85 @@ $backupWithinDays = 1 # databases should have full backups within this many days
 $dbOwner = 'sa' # databases should have this owner
 $dbStatus = 'ONLINE' # databases should be online
 
-if ($results) {
+$pieCanvasID      = "pieCanvas"
+$doughnutCanvasID = "doughnutCanvas"
+$barCanvasID      = "barCanvas"
 
-    $reportCss = "
-    table {
-        border-collapse: collapse;
-    }
-    td, th {
-        border: 1px solid #ddd;
-        padding: 8px;
-    }
-    tr:nth-child(even){background-color: #f2f2f2;}
-    tr:hover {background-color: #ddd;}
-    th {
-        padding-top: 12px;
-        padding-bottom: 12px;
-        text-align: left;
-        background-color: #13a3a8;
-        color: white;
-    }
-    .fail th {
-        padding-top: 12px;
-        padding-bottom: 12px;
-        text-align: left;
-        background-color: #ff6347;
-        color: white;
-    }
-    "
+$html = html {
+    head {
+        script -src "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js" -type "text/javascript"
+        # add bootstrap for some basic styling
+        link -href "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" -rel "stylesheet"
+        script -src "https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" -type "text/javascript"
+        script -src "https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js" -type "text/javascript"
 
-    $html = html {
-        head {
-            style {
-                $reportCss
+    }
+    body {
+        Header {
+            h1 {"Morning Checks: {0}" -f (Get-Date -f 'yyyy-MM-dd')}
+        }
+
+        #region Charts
+
+        div -class "container-fluid" {
+            div -class "row" {
+                div -class "col-sm-4" {
+                    canvas -Height 300px -Width 300px -Id $pieCanvasID {}
+                }
+                div -class "col-sm-4" {
+                    canvas -Height 300px -Width 300px -Id $BarCanvasID {}
+                }
+                div -class "col-sm-4" {
+                    canvas -Height 300px -Width 300px -Id $DoughnutCanvasID {}
+                }
             }
         }
-        body {
-            Header {
-                h1 {"Morning Checks: {0}" -f (Get-Date -f 'yyyy-MM-dd')}
-            }
 
-            h2 {"Databases without Backups in the last $backupWithinDays days"}
-            ConvertTo-PSHTMLTable -Object ($dbs | Where-Object LastFullBackup -le (get-date).AddDays(-$backupWithinDays) | Sort-Object name
-            ) -properties SqlInstance, Name, LastFullBackup
+        script -content {
 
-            h2 {"Databases where owner isn't $dbOwner"}
-            ConvertTo-PSHTMLTable -Object ($dbs | Where-Object Owner -ne $dbOwner | Sort-Object name
-            ) -properties SqlInstance, Name, Owner
+            $data   = $dbs | Group-Object Compatibility
+            $counts = $data | ForEach-Object {$_.Count}
+            $labels = $data.Name
+            $colours = @("yellow","red","green","orange","blue")
 
-            h2 {"Databases where status isn't $dbStatus"}
-            ConvertTo-PSHTMLTable -Object ($dbs | Where-Object Status -ne $dbStatus | Sort-Object name
-            ) -properties SqlInstance, Name, Status, IsAccessible
+            $dsp1   = New-PSHTMLChartPieDataSet -Data $counts -BackgroundColor $colours
+            New-PSHTMLChart -type pie -DataSet $dsp1 -title "Count of database compatibility levels" -Labels $labels -CanvasID pieCanvas
+
+            $barcounts = $dbs.SizeMB
+            $barlabels = $dbs.Name
+
+            $dsb1 = New-PSHTMLChartBarDataSet -Data $barcounts -label "Size (MB)" -backgroundColor 'blue' -hoverBackgroundColor 'red' -borderColor 'red' -hoverBorderColor 'red'
+            New-PSHTMLChart -type bar -DataSet $dsb1 -title "Database Size in MB" -Labels $barlabels -CanvasID $BarCanvasID
+
+            $docounts = $dbs | Group-Object status | ForEach-Object {$_.Count}
+            $dolabels = $dbs.status
+
+            $colours = @("green","red","yellow","orange","blue")
+            $dsd1 = New-PSHTMLChartDoughnutDataSet -Data $docounts -backgroundcolor $colours -hoverbackgroundColor $colours
+            New-PSHTMLChart -Type doughnut -DataSet $dsd1 -title "Database Status" -Labels $dolabels -CanvasID $DoughnutCanvasID
 
         }
-    }
 
-    # You can output it as a html file to review how it looks
-    $html > ./web/test.HTML
+        #endregion
+
+        #region tables
+        div -class fullWidth
+        h2 {"Databases without Backups in the last $backupWithinDays days"}
+        ConvertTo-PSHTMLTable -Object ($dbs | Where-Object LastFullBackup -le (get-date).AddDays(-$backupWithinDays) | Sort-Object name
+        ) -properties SqlInstance, Name, LastFullBackup -TableClass 'table table-striped'
+
+        h2 {"Databases where owner isn't $dbOwner"}
+        ConvertTo-PSHTMLTable -Object ($dbs | Where-Object Owner -ne $dbOwner | Sort-Object name
+        ) -properties SqlInstance, Name, Owner -TableClass 'table table-striped'
+
+        h2 {"Databases where status isn't $dbStatus"}
+        ConvertTo-PSHTMLTable -Object ($dbs | Where-Object Status -ne $dbStatus | Sort-Object name
+        ) -properties SqlInstance, Name, Status, IsAccessible -TableClass 'table table-striped'
+        #endregion
+    }
+}
+# You can output it as a html file to review how it looks
+$html > ./web/MorningChecksReport.HTML
 
    # try {
    #     $emailSplat = @{
@@ -107,4 +130,3 @@ if ($results) {
    # } catch {
    #     Stop-PSFFunction -Message ('Failed to send email') -ErrorRecord $_
    # }
-}

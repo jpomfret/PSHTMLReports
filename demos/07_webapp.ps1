@@ -50,7 +50,7 @@ if ($results) {
             h2 { "All the pages we've built:"}
 
             ul {
-                Get-ChildItem -Path .\web -Recurse -Exclude index.html | Sort-Object Name | ForEach-Object {
+                Get-ChildItem -Path .\web\* -File -Exclude index.html | Sort-Object Name | ForEach-Object {
                     li {
                         a -href $_.Name -content $_.BaseName
                     }

@@ -9,28 +9,32 @@
         "MY_SERVER": "mssql1"
     },
     "service": "mssql1",
-    "settings": {
-        "editor.renderWhitespace": "all",
-        "#terminal.integrated.profiles.linux#": {
-        "pwsh": {
-            "path": "pwsh",
-            "icon": "terminal-powershell"
-        }q
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "editor.renderWhitespace": "all",
+                "#terminal.integrated.profiles.linux#": {
+                    "pwsh": {
+                        "path": "pwsh",
+                        "icon": "terminal-powershell"
+                    }
+                },
+                "terminal.integrated.defaultProfile.linux": "pwsh"
+            },
+            "extensions": [
+                "ms-vscode.powershell",
+                "github.vscode-pull-request-github",
+                "2gua.rainbow-brackets",
+                "oderwat.indent-rainbow",
+                "mhutchie.git-graph",
+                "usernamehw.errorlens",
+                "streetsidesoftware.code-spell-checker",
+                "Gruntfuggly.todo-tree",
+                "GitHub.github-vscode-theme",
+                "george-alisson.html-preview-vscode"
+            ]
+        }
     },
-    "terminal.integrated.defaultProfile.linux": "pwsh"
-    },
-    "extensions": [
-        "ms-vscode.powershell",
-        "github.vscode-pull-request-github",
-        "2gua.rainbow-brackets",
-        "oderwat.indent-rainbow",
-        "mhutchie.git-graph",
-        "usernamehw.errorlens",
-        "streetsidesoftware.code-spell-checker",
-        "Gruntfuggly.todo-tree",
-        "GitHub.github-vscode-theme",
-        "george-alisson.html-preview-vscode"
-    ],
     "shutdownAction": "stopCompose",
-    "remoteUser": "root"  // not ideal - prob need to setup a non-root user and use that instead. permissions issue without this!
+    "remoteUser": "root" // not ideal - prob need to setup a non-root user and use that instead. permissions issue without this!
 }
