@@ -27,7 +27,7 @@ if ($results) {
         body {
             Header {
                 h1 {"Jess' PSConfEU 2024 Presentation - last updated on: {0}" -f (Get-Date -f 'yyyy-MM-dd')}
-                img -src "img/pomfret.png" -alt "Jess Pomfret" -style "width: 200px; height: 200px;" -class right align
+                img -src "https://github.com/jpomfret/PSHTMLReports/assets/981370/626b6ba9-e53f-400b-ba2d-11cf9ebbceeb" -alt "Jess Pomfret" -style "width: 200px; height: 200px;" -class right align
             }
             p {
                 # have copilot write a nice paragraph about the presentation
