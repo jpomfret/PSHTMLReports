@@ -38,14 +38,11 @@ $htmlPage = html {
 
         script -content {
 
-            $Data3 = @(4,1,6,12,17,25,18,17,22,30,35,44)
-            $Labels = @("January","February","Mars","April","Mai","June","July","August","September","October","November","december")
+            $barChartData = @(4,1,6,12,17,25,18,17,22,30,35,44)
+            $barChartLabels = (New-Object System.Globalization.DateTimeFormatInfo).MonthNames
 
-            # 3. a dataset
-            $dsb3 = New-PSHTMLChartBarDataSet -Data $data3 -label "2018" -BackgroundColor ('blue')
-
-            # 4. a chart which contains the dataset(s), and which is assigned the CanvasID.
-            New-PSHTMLChart -type bar -DataSet $dsb3 -title "Bar Chart Example" -Labels $Labels -CanvasID $BarCanvasID
+            $dsb1 = New-PSHTMLChartBarDataSet -Data $barChartData -label "Size (MB)" -backgroundColor 'blue' -hoverBackgroundColor 'red' -borderColor 'red' -hoverBorderColor 'red'
+            New-PSHTMLChart -type bar -DataSet $dsb1 -title "Database Size in MB" -Labels $barChartLabels -CanvasID $BarCanvasID
 
         }
 
