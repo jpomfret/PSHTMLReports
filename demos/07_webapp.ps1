@@ -28,12 +28,10 @@ $html = html {
         }
         p {
             # have copilot write a nice paragraph about the presentation
-            "Welcome to my presentation on PSConfEU 2024. I'm Jess Pomfret and I'm excited to share with you all the things I've learnt about PSHTML and how you can use it to create webapps in Azure."
         }
 
         p {
             # also lets add an interesting fact about octopuses
-            "Did you know that octopuses have three hearts and blue blood?"
         }
 
         h2 { "All the things we've learnt:"}
