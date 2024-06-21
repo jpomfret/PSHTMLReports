@@ -18,6 +18,8 @@ $htmlPage = html {
     head {
         title 'Bar Chart'
 
+        # 1. a script tag with a reference to Chart.js library
+        script -src "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js" -type "text/javascript"
     }
     body {
 
@@ -33,8 +35,6 @@ $htmlPage = html {
             }
 
         }
-        # 1. a script tag with a reference to Chart.js library
-        script -src "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js" -type "text/javascript"
 
         script -content {
 
@@ -52,3 +52,14 @@ $htmlPage = html {
     }
 }
 $htmlPage | Out-File -FilePath ./web/graphs.html -Encoding utf8
+
+<#
+## Graph types
+
+- Bar
+- Doughnut
+- Line
+- Pie
+- PolarArea
+- Radar
+#>
