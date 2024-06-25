@@ -1,4 +1,21 @@
 # we can change our output based on PowerShell conditional logic
+$data = @(
+    [PSCustomObject]@{
+        Name = 'Jess'
+        Age = 30
+        Location = 'UK'
+    }
+    [PSCustomObject]@{
+        Name = 'Rob'
+        Age = 31
+        Location = 'UK'
+    }
+    [PSCustomObject]@{
+        Name = 'Chrissy'
+        Age = 29
+        Location = 'UK'
+    }
+)
 
 $css = @"
 table.paleBlueRows {
@@ -121,5 +138,6 @@ $html | Out-File .\web\table2.html
 # open the file in the browser
 # run this in the terminal
 <#
+    Set-Location -Path 'C:\GitHub\PSHTMLReports'
     1..10 | ForEach-Object { .\demos\03_conditional.ps1; start-sleep -Seconds 2}
 #>

@@ -1,20 +1,5 @@
 ## Using PSHTML to create a webapp in Azure
 
-$reportCss = "
-body {
-    font-family: Arial, sans-serif;
-}
-.right {
-    display: block;
-    float: right;
-    margin-left: auto;
-    margin-right: 50;
-}
-ul {
-    list-style-type: square;
-}
-"
-
 $html = html {
     head {
         script -src "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js" -type "text/javascript"
@@ -27,7 +12,7 @@ $html = html {
     }
     body {
         Header {
-            h1 {"Jess' PSConfEU 2024 Presentation - last updated on: {0}" -f (Get-Date -f 'yyyy-MM-dd')}
+            h1 {"Jess' PSConfEU 2024 Presentation - last updated on: {0}" -f (Get-Date -f 'yyyy-MM-dd HH:mm:ss')}
 
             img -src "https://i0.wp.com/psconf.eu/wp-content/uploads/2024/01/pomfret-shield24.png" -alt "Jess Pomfret"  -Class float-end imgshadow -style "width: 200px; height: 200px;"
         }

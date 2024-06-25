@@ -9,6 +9,7 @@
 
 # get the database information with dbatools
 $dbs = Get-DbaDatabase -SqlInstance mssql1
+$dbs
 
 # requirements
 $backupWithinDays = 1 # databases should have full backups within this many days
@@ -32,7 +33,7 @@ $html = html {
     }
     body {
         Header {
-            h1 {"Morning Checks: {0}" -f (Get-Date -f 'yyyy-MM-dd')}
+            h1 {"Morning Checks: {0}" -f (Get-Date -f 'yyyy-MM-dd HH:mm:ss')}
         }
 
         #region Charts
@@ -68,7 +69,7 @@ $html = html {
             New-PSHTMLChart -type bar -DataSet $dsb1 -title "Database Size in MB" -Labels $barlabels -CanvasID $BarCanvasID
 
             $docounts = $dbs | Group-Object status | ForEach-Object {$_.Count}
-            $dolabels = $dbs.status
+            $dolabels = $dbs.status | Select-Object -Unique
 
             $colours = @("green","red","yellow","orange","blue")
             $dsd1 = New-PSHTMLChartDoughnutDataSet -Data $docounts -backgroundcolor $colours -hoverbackgroundColor $colours
@@ -108,16 +109,21 @@ $html = html {
 # You can output it as a html file to review how it looks
 $html > ./web/MorningChecksReport.HTML
 
-   # try {
-   #     $emailSplat = @{
-   #         To = $emailTo
-   #         From = $emailFrom
-   #         SmtpServer = $smtpServer
-   #         Subject = $emailSubject
-   #         Body = $html
-   #         BodyAsHtml = $true
-   #     }
-   #     Send-MailMessage @emailSplat
-   # } catch {
-   #     Stop-PSFFunction -Message ('Failed to send email') -ErrorRecord $_
-   # }
+# Fix BrokenDb
+Set-DbaDbState -SqlInstance mssql1 -Database BrokenDb -Online
+
+# rerun report...
+
+# try {
+#     $emailSplat = @{
+#         To = $emailTo
+#         From = $emailFrom
+#         SmtpServer = $smtpServer
+#         Subject = $emailSubject
+#         Body = $html
+#         BodyAsHtml = $true
+#     }
+#     Send-MailMessage @emailSplat
+# } catch {
+#     Stop-PSFFunction -Message ('Failed to send email') -ErrorRecord $_
+# }
