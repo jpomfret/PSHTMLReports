@@ -11,6 +11,8 @@ services:
         - "4433:1433"
       container_name: mssql1
       hostname: mssql1
+      environment:
+        TZ: "Europe/Paris"
 
 volumes:
   mydata:
