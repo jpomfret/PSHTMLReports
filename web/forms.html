@@ -1,35 +1,21 @@
-<html>
+<html ><head ><title >Cat Fact Form</title><script type="text/javascript"  >    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.querySelector('#myForm');
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const limit = document.querySelector('input[name="fact"]').value;
+            const url = limit ? `https://catfact.ninja/facts?limit=${limit}` : 'https://catfact.ninja/facts/';
+            fetch(url)
+                .then(response => response.json())
+                .then(facts => showFacts(facts.data));
+        });
 
-<head>
-    <title>Cat Fact Form</title>
-    <script type="text/javascript">    document.addEventListener('DOMContentLoaded', function () {
-            const form = document.querySelector('#myForm');
-            form.addEventListener('submit', function (e) {
-                e.preventDefault();
-                const limit = document.querySelector('input[name="fact"]').value;
-                const url = limit ? `https://catfact.ninja/facts?limit=${limit}` : 'https://catfact.ninja/facts/';
-                fetch(url)
-                    .then(response => response.json())
-                    .then(facts => showFacts(facts.data));
+        showFacts = facts => {
+            const factsDiv = document.querySelector('#catFact');
+            factsDiv.innerHTML = ''; // Clear the div
+            facts.forEach(fact => {
+                const factElement = document.createElement('p');
+                factElement.innerText = `Fact: ${fact.fact}`;
+                factsDiv.append(factElement);
             });
-
-            showFacts = facts => {
-                const factsDiv = document.querySelector('#catFact');
-                factsDiv.innerHTML = ''; // Clear the div
-                facts.forEach(fact => {
-                    const factElement = document.createElement('p');
-                    factElement.innerText = `Fact: ${fact.fact}`;
-                    factsDiv.append(factElement);
-                });
-            }
-        });</script>
-</head>
-
-<Body>
-    <h1>Let's get a cat fact</h1>
-    <form Id="myForm" method="post" enctype="text/plain" Target="_self" action="self"><input name="fact" Id="fact"
-            type="text" /><input name="Get Cat Fact" type="submit" /></form>
-    <div Id="catFact"></div>
-</Body>
-
-</html>
+        }
+    });</script></head><Body ><h1 >Let's get a cat fact</h1><form action="self" enctype="text/plain" method="post" Target="_self" Id="myForm"  ><input type="text" Id="fact" name="fact"  /><input type="submit" name="Get Cat Fact"  /></form><div Id="catFact"  ></div></Body></html>
